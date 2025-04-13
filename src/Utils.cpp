@@ -55,11 +55,45 @@ void import_data(double &S,	size_t &n, double * &w, double * &r, const string &n
 	
 }
 
-bool stampa_risultati(double &S,	size_t &n, double * &w, double * &r){
+double Prodotto_scalare(const size_t& n, const double* const w, const double* const r){
+	double prod_scalare=0.0;
+	for (unsigned int i =0; i<n; i++){
+		prod_scalare+=w[i]*r[i];
+	}
+	
+	return prod_scalare;
+}
+
+
+
+bool stampa_risultati(double &S,	size_t &n, double * &w, double * &r, double& rate_of_ret, const string& nome_p_out_file){
+	double V = S+(S*rate_of_ret);
 	// Export terminale
-	cout<<"S = "<<setprecision(2)<<S<<", n = "<<n<<endl;
+	cout << fixed << setprecision(2);
+	cout<<"S = "<<S<<", n = "<<n<<endl;
 	cout<<"w = "<<ArrayToString(n,w)<<endl;
 	cout<<"r = "<<ArrayToString(n,r)<<endl;
+	cout<<"Rate of return of the portfolio: "<<setprecision(4)<<rate_of_ret<<endl;
+	cout<<"V: "<<setprecision(2)<<V<<endl;
+	
+	// Export su file
+	ofstream file;
+    file.open(nome_p_out_file);
+
+    if (file.fail())
+    {
+        cerr<< "apertura file output non riuscita"<< endl;
+        return false;
+    }
+	file << fixed << setprecision(2);
+	file <<"S = "<<S<<", n = "<<n<<endl;
+	file <<"w = "<<ArrayToString(n,w)<<endl;
+	file <<"r = "<<ArrayToString(n,r)<<endl;
+	file <<"Rate of return of the portfolio: "<<setprecision(4)<<rate_of_ret<<endl;
+	file <<"V: "<<setprecision(2)<<V<<endl;
+	
+	// Close File
+    file.close();
 	
 	return true;
 }
