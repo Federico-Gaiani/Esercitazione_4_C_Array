@@ -7,14 +7,14 @@
 
 using namespace std;
 
-void import_data(double &S,	size_t &n, double * &w, double * &r, const string &nome_p_file){
+bool import_data(double &S,	size_t &n, double * &w, double * &r, const string &nome_p_file){
 	ifstream file;
     file.open(nome_p_file);
 
     if (file.fail())
     {
         cerr<< "Errore nell'apertura del file"<< endl;
-        //return false;
+        return false;
     }
 	
 	
@@ -52,7 +52,7 @@ void import_data(double &S,	size_t &n, double * &w, double * &r, const string &n
 		ss >> r[i];
 		//cout<<"r[i]: "<<r[i]<<endl; 
 	}
-	
+	return true;
 }
 
 double Prodotto_scalare(const size_t& n, const double* const w, const double* const r){

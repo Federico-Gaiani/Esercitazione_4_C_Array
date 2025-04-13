@@ -18,7 +18,17 @@ int main()
 	
 	
 	
-	import_data(S,n,w,r,nome_p_file);
+	
+	
+	
+	if (!import_data(S,n,w,r,nome_p_file))
+    {
+        cerr<< "Something goes wrong with import"<< endl;
+        return -1;
+    }
+    else
+        cout<< "Import successful"<< endl;
+
 	
 	
 	double rate_of_ret = Prodotto_scalare(n,w,r);
@@ -26,6 +36,10 @@ int main()
 	//cout<<w<<endl;
 	//cout<<*r<<endl;
 	stampa_risultati(S,n,w,r, rate_of_ret, nome_p_out_file);
+	
+	
+	delete[] w;
+	delete[] r;
 	
     return 0;
 }

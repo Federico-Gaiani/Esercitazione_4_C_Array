@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void import_data(double &S,	size_t &n, double * &w, double * &r, const string &nome_p_file);
+bool import_data(double &S,	size_t &n, double * &w, double * &r, const string &nome_p_file);
 
 double Prodotto_scalare(const size_t& n, const double* const w, const double* const r);
 
